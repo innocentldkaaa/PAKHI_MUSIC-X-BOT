@@ -27,22 +27,38 @@ from config import BANNED_USERS, AMOP
 from strings import get_string
 
 
-
-ANNIE_VID = [
-"https://telegra.ph/file/1726f9434ef52f54c12eb.mp4",
-"https://telegra.ph/file/a4d90b0cb759b67d68644.mp4",
-"https://telegra.ph/file/c6c1ac9aee4192a8a3747.mp4",
-"https://telegra.ph/file/2b75449612172a96d4599.mp4",
-"https://telegra.ph/file/0b53cfe4a712af439d50f.mp4",
-"https://telegra.ph/file/64291485c422535f0143d.mp4",
-"https://telegra.ph/file/30ec7c936db6cd2ce7c61.mp4",
-"https://telegra.ph/file/e8bcb814e2c52c11a0f1d.mp4",
-"https://telegra.ph/file/9b7e1b820c72a14d90be7.mp4",
-"https://telegra.ph/file/37d1815385f8244f9a282.mp4"
-
+YUMI_PICS = [
+"https://telegra.ph/file/13695d1e2c7296553318a.jpg",
+"https://telegra.ph/file/3bb604c055afdede6e07f.jpg",
+"https://telegra.ph/file/aa680370ead219cfb8652.jpg",
+"https://telegra.ph/file/fc4b73041704454722e51.jpg",
+"https://telegra.ph/file/59239fbe2255e9e8ee23b.jpg",
+"https://telegra.ph/file/846b51236dcfbaec282b0.jpg",
+"https://telegra.ph/file/5c09e0f371058f1591d48.jpg",
+"https://telegra.ph/file/13695d1e2c7296553318a.jpg",
+"https://telegra.ph/file/424bf8bee6d234449f3f0.jpg",
+"https://telegra.ph/file/0d9d51bac99ad83029098.jpg",
+"https://telegra.ph/file/b6ceb4dfb1915211b2e18.jpg",
+"https://telegra.ph/file/3bb604c055afdede6e07f.jpg",
+"https://telegra.ph/file/577aad7452faa1125d96d.jpg",
+"https://telegra.ph/file/f4bd190e64fa5889b5eed.jpg",
+"https://telegra.ph/file/467093cbbfa9c5487b5d7.jpg",
+"https://telegra.ph/file/572b48b1d21fc15783061.jpg",
+"https://telegra.ph/file/b948981351c0ffeaec2dd.jpg",
+"https://telegra.ph/file/14097dad05a69aea5c1c8.jpg",
+"https://telegra.ph/file/3bb604c055afdede6e07f.jpg",
+"https://telegra.ph/file/f4bd190e64fa5889b5eed.jpg",
+"https://telegra.ph/file/5a80bb01333f6da6f1ff5.jpg",
+"https://telegra.ph/file/0d9d51bac99ad83029098.jpg",
+"https://telegra.ph/file/13695d1e2c7296553318a.jpg",
+"https://telegra.ph/file/3bb604c055afdede6e07f.jpg",
+"https://telegra.ph/file/f4bd190e64fa5889b5eed.jpg",
+"https://telegra.ph/file/5a80bb01333f6da6f1ff5.jpg",
+"https://telegra.ph/file/0d9d51bac99ad83029098.jpg",
+"https://telegra.ph/file/13695d1e2c7296553318a.jpg",
+"https://telegra.ph/file/0d9d51bac99ad83029098.jpg",
 
 ]
-
 
 
 
@@ -54,8 +70,8 @@ async def start_pm(client, message: Message, _):
         name = message.text.split(None, 1)[1]
         if name[0:4] == "help":
             keyboard = help_pannel(_)
-            return await message.reply_video(
-                random.choice(ANNIE_VID),
+            return await message.reply_photo(
+                random.choice(YUMI_PICS),
                 caption=_["help_1"].format(config.SUPPORT_CHAT),
                 reply_markup=keyboard,
             )
@@ -64,7 +80,7 @@ async def start_pm(client, message: Message, _):
             if await is_on_off(2):
                 return await app.send_message(
                     chat_id=config.LOGGER_ID,
-                    text=f"{message.from_user.mention} ᴊᴜsᴛ sᴛᴀʀᴛᴇᴅ ᴛʜᴇ ʙᴏᴛ ᴛᴏ ᴄʜᴇᴄᴋ <b>sᴜᴅᴏʟɪsᴛ</b>.\n\n<b>ᴜsᴇʀ ɪᴅ :</b> <code>{message.from_user.id}</code>\n<b>ᴜsᴇʀɴᴀᴍᴇ :</b> @{message.from_user.username}",
+                    text=f"✦ {message.from_user.mention} ᴊᴜsᴛ sᴛᴀʀᴛᴇᴅ ᴛʜᴇ ʙᴏᴛ ᴛᴏ ᴄʜᴇᴄᴋ <b>sᴜᴅᴏʟɪsᴛ</b>.\n\n<b>✦ ᴜsᴇʀ ɪᴅ ➠</b> <code>{message.from_user.id}</code>\n<b>✦ ᴜsᴇʀɴᴀᴍᴇ ➠</b> @{message.from_user.username}",
                 )
             return
         if name[0:3] == "inf":
@@ -93,31 +109,31 @@ async def start_pm(client, message: Message, _):
                 ]
             )
             await m.delete()
-            await app.send_video(
+            await app.send_photo(
                 chat_id=message.chat.id,
-                video=thumbnail,
+                photo=thumbnail,
                 caption=searched_text,
                 reply_markup=key,
             )
             if await is_on_off(2):
                 return await app.send_message(
                     chat_id=config.LOGGER_ID,
-                    text=f"{message.from_user.mention} ᴊᴜsᴛ sᴛᴀʀᴛᴇᴅ ᴛʜᴇ ʙᴏᴛ ᴛᴏ ᴄʜᴇᴄᴋ <b>ᴛʀᴀᴄᴋ ɪɴғᴏʀᴍᴀᴛɪᴏɴ</b>.\n\n<b>ᴜsᴇʀ ɪᴅ :</b> <code>{message.from_user.id}</code>\n<b>ᴜsᴇʀɴᴀᴍᴇ :</b> @{message.from_user.username}",
+                    text=f"✦ {message.from_user.mention} ᴊᴜsᴛ sᴛᴀʀᴛᴇᴅ ᴛʜᴇ ʙᴏᴛ ᴛᴏ ᴄʜᴇᴄᴋ <b>ᴛʀᴀᴄᴋ ɪɴғᴏʀᴍᴀᴛɪᴏɴ</b>.\n\n✦ <b>ᴜsᴇʀ ɪᴅ ➠</b> <code>{message.from_user.id}</code>\n✦ <b>ᴜsᴇʀɴᴀᴍᴇ ➠</b> @{message.from_user.username}",
                 )
     else:
         out = private_panel(_)
         served_chats = len(await get_served_chats())
         served_users = len(await get_served_users())
         UP, CPU, RAM, DISK = await bot_sys_stats()
-        await message.reply_video(
-            random.choice(ANNIE_VID),
-            caption=random.choice(AMOP).format(message.from_user.mention, app.mention, UP, DISK, CPU, RAM,served_users,served_chats),
+        await message.reply_photo(
+            random.choice(YUMI_PICS),
+            caption=_["start_2"].format(message.from_user.mention, app.mention, UP, DISK, CPU, RAM,served_users,served_chats),
             reply_markup=InlineKeyboardMarkup(out),
         )
         if await is_on_off(2):
             return await app.send_message(
                 chat_id=config.LOGGER_ID,
-                text=f"{message.from_user.mention} ᴊᴜsᴛ sᴛᴀʀᴛᴇᴅ ᴛʜᴇ ʙᴏᴛ.\n\n<b>ᴜsᴇʀ ɪᴅ :</b> <code>{message.from_user.id}</code>\n<b>ᴜsᴇʀɴᴀᴍᴇ :</b> @{message.from_user.username}",
+                text=f"✦ {message.from_user.mention} ᴊᴜsᴛ sᴛᴀʀᴛᴇᴅ ᴛʜᴇ ʙᴏᴛ.\n\n✦ <b>ᴜsᴇʀ ɪᴅ ➠</b> <code>{message.from_user.id}</code>\n✦ <b>ᴜsᴇʀɴᴀᴍᴇ ➠</b> @{message.from_user.username}",
             )
 
 
@@ -126,8 +142,8 @@ async def start_pm(client, message: Message, _):
 async def start_gp(client, message: Message, _):
     out = start_panel(_)
     uptime = int(time.time() - _boot_)
-    await message.reply_video(
-        random.choice(ANNIE_VID),
+    await message.reply_photo(
+        random.choice(YUMI_PICS),
         caption=_["start_1"].format(app.mention, get_readable_time(uptime)),
         reply_markup=InlineKeyboardMarkup(out),
     )
@@ -161,8 +177,8 @@ async def welcome(client, message: Message):
                     return await app.leave_chat(message.chat.id)
 
                 out = start_panel(_)
-                await message.reply_video(
-                    random.choice(ANNIE_VID),
+                await message.reply_photo(
+                    random.choice(YUMI_PICS),
                     caption=_["start_3"].format(
                         message.from_user.mention,
                         app.mention,
@@ -175,3 +191,5 @@ async def welcome(client, message: Message):
                 await message.stop_propagation()
         except Exception as ex:
             print(ex)
+
+        
