@@ -1,7 +1,6 @@
 import time
 import asyncio
 import random
-
 from pyrogram import filters
 from pyrogram.enums import ChatType
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
@@ -63,6 +62,24 @@ STICKER = [
 ]
 
 
+ANNIE_VID = [
+"https://telegra.ph/file/1726f9434ef52f54c12eb.mp4",
+"https://telegra.ph/file/a4d90b0cb759b67d68644.mp4",
+"https://telegra.ph/file/c6c1ac9aee4192a8a3747.mp4",
+"https://telegra.ph/file/2b75449612172a96d4599.mp4",
+"https://telegra.ph/file/0b53cfe4a712af439d50f.mp4",
+"https://telegra.ph/file/64291485c422535f0143d.mp4",
+"https://telegra.ph/file/30ec7c936db6cd2ce7c61.mp4",
+"https://telegra.ph/file/e8bcb814e2c52c11a0f1d.mp4",
+"https://telegra.ph/file/9b7e1b820c72a14d90be7.mp4",
+"https://telegra.ph/file/37d1815385f8244f9a282.mp4"
+
+
+]
+
+
+
+
 @app.on_message(filters.command(["start"]) & filters.private & ~BANNED_USERS)
 @LanguageStart
 async def start_pm(client, message: Message, _):
@@ -71,8 +88,8 @@ async def start_pm(client, message: Message, _):
         name = message.text.split(None, 1)[1]
         if name[0:4] == "help":
             keyboard = help_pannel(_)
-            return await message.reply_photo(
-                photo=config.START_IMG_URL,
+            return await message.reply_video(
+                random.choice(ANNIE_VID),
                 caption=_["help_1"].format(config.SUPPORT_CHAT),
                 reply_markup=keyboard,
             )
@@ -110,9 +127,9 @@ async def start_pm(client, message: Message, _):
                 ]
             )
             await m.delete()
-            await app.send_photo(
+            await app.send_video(
                 chat_id=message.chat.id,
-                photo=thumbnail,
+                video=thumbnail,
                 caption=searched_text,
                 reply_markup=key,
             )
@@ -138,7 +155,7 @@ async def start_pm(client, message: Message, _):
         await asyncio.sleep(2)
         await umm.delete()
         await message.reply_video(
-            video="https://telegra.ph/file/ac573bda31359a8bb51a5.mp4",
+            random.choice(ANNIE_VID),
             caption=_["start_2"].format(message.from_user.mention, app.mention),
             reply_markup=InlineKeyboardMarkup(out),
         )
@@ -148,14 +165,13 @@ async def start_pm(client, message: Message, _):
                 text=f"{message.from_user.mention} ᴊᴜsᴛ sᴛᴀʀᴛᴇᴅ ᴛʜᴇ ʙᴏᴛ.\n\n<b>ᴜsᴇʀ ɪᴅ :</b> <code>{message.from_user.id}</code>\n<b>ᴜsᴇʀɴᴀᴍᴇ :</b> @{message.from_user.username}",
             )
 
-
 @app.on_message(filters.command(["start"]) & filters.group & ~BANNED_USERS)
 @LanguageStart
 async def start_gp(client, message: Message, _):
     out = start_panel(_)
     uptime = int(time.time() - _boot_)
-    await message.reply_photo(
-        photo=config.START_IMG_URL,
+    await message.reply_video(
+        random.choice(ANNIE_VID),
         caption=_["start_1"].format(app.mention, get_readable_time(uptime)),
         reply_markup=InlineKeyboardMarkup(out),
     )
@@ -189,10 +205,10 @@ async def welcome(client, message: Message):
                     return await app.leave_chat(message.chat.id)
 
                 out = start_panel(_)
-                await message.reply_photo(
-                    photo=config.START_IMG_URL,
+                await message.reply_video(
+                    random.choice(ANNIE_VID),
                     caption=_["start_3"].format(
-                        message.from_user.first_name,
+                        message.from_user.mention,
                         app.mention,
                         message.chat.title,
                         app.mention,
