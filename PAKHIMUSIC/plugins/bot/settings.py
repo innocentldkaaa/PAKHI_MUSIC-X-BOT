@@ -6,7 +6,6 @@ from pyrogram.types import (
     InlineKeyboardButton,
     InlineKeyboardMarkup,
     Message,
-InputMediaVideo,
 )
 
 from PAKHIMUSIC import app
