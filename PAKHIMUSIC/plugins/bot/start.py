@@ -137,7 +137,7 @@ async def start_pm(client, message: Message, _):
         umm = await message.reply_sticker(sticker=random.choice(STICKER))
         await asyncio.sleep(2)
         await umm.delete()
-        await message.start_pm(
+        await message.reply_video(
             video="https://telegra.ph/file/ac573bda31359a8bb51a5.mp4",
             caption=_["start_2"].format(message.from_user.mention, app.mention),
             reply_markup=InlineKeyboardMarkup(out),
